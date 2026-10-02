@@ -39,7 +39,7 @@
     "verify:package": "bun scripts/verify-package.ts",
     "report:size": "bun scripts/report-size.ts",
     "prepack": "bun run build",
-    "check": "bun run typecheck && bun run lint && bun test && bun run build && bun run verify:package"
+    "check": "bun run build && bun run typecheck && bun run lint && bun test && bun run verify:package"
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": "*",

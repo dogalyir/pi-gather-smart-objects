@@ -1,9 +1,19 @@
-import { describe, expect, it } from "bun:test";
+import { beforeAll, describe, expect, it } from "bun:test";
+import { execSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import packageJson from "../package.json" with { type: "json" };
 
 describe("Package Distribution & Integrity", () => {
+  beforeAll(() => {
+    // Ensure distribution artifacts exist before testing package integrity
+    const bundlePath = path.resolve("dist/gather.js");
+    const schemaPath = path.resolve("dist/pi-gather-hooks.schema.json");
+    if (!fs.existsSync(bundlePath) || !fs.existsSync(schemaPath)) {
+      execSync("bun run build", { stdio: "pipe" });
+    }
+  });
+
   it("has valid package metadata and exports", () => {
     expect(packageJson.name).toBe("pi-gather-smart-objects");
     expect(packageJson.type).toBe("module");
