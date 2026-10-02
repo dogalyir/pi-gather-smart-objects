@@ -1,0 +1,59 @@
+{
+  "name": "pi-gather-smart-objects",
+  "version": "0.1.0",
+  "description": "Pi Coding Agent extension to control Gather Smart Objects via lifecycle hooks and a send tool",
+  "keywords": [
+    "pi-package",
+    "gather",
+    "smart-objects"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/gather.js",
+  "exports": {
+    ".": "./dist/gather.js",
+    "./schema.json": "./dist/pi-gather-hooks.schema.json"
+  },
+  "pi": {
+    "extensions": [
+      "./dist/gather.js"
+    ]
+  },
+  "files": [
+    "dist/gather.js",
+    "dist/pi-gather-hooks.schema.json",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "generate:schema": "bun scripts/generate-schema.ts",
+    "build": "bun run generate:schema && bun scripts/build.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "lint": "oxlint .",
+    "format:check": "oxfmt --check src scripts test",
+    "verify:package": "bun scripts/verify-package.ts",
+    "report:size": "bun scripts/report-size.ts",
+    "prepack": "bun run build",
+    "check": "bun run typecheck && bun run lint && bun test && bun run build && bun run verify:package"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^1.0.0",
+    "@earendil-works/pi-coding-agent": "^1.0.0",
+    "@gathertown/webhook-object-sdk": "^0.3.0",
+    "@types/bun": "latest",
+    "@valibot/to-json-schema": "^1.8.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "typescript": "^7.0.2",
+    "valibot": "^1.5.0"
+  }
+}
