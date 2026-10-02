@@ -1,0 +1,11 @@
+name: Project checks
+description: Run the repository verification gate (install, check, pack dry-run)
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies (frozen)
+      run: bun install --frozen-lockfile
+      shell: bash
+    - name: Run verification gate
+      run: bun run check
+      shell: bash
