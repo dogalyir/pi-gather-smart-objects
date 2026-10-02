@@ -77,13 +77,12 @@ while ((match = importRegex.exec(bundleContent)) !== null) {
 console.log("External imports in bundle:", Array.from(externalImports));
 
 for (const imp of externalImports) {
-  const isAllowed =
-    imp.startsWith("node:") || imp.startsWith("@earendil-works/") || imp === "typebox";
+  const isAllowed = imp.startsWith("node:");
 
   if (!isAllowed) {
     console.error(
       `Forbidden external import detected in bundle: ${imp}. ` +
-        `Only node:* and Pi host packages (@earendil-works/*, typebox) may be external.`,
+        `Only node:* builtins may be external; all dependencies must be self-contained in the bundle.`,
     );
     process.exit(1);
   }

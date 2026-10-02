@@ -1,6 +1,6 @@
 {
   "name": "pi-gather-smart-objects",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pi Coding Agent extension to control Gather Smart Objects via lifecycle hooks and a send tool",
   "keywords": [
     "pi-package",

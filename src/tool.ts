@@ -1,5 +1,6 @@
-import { Type, type JsonValue } from "@earendil-works/pi-ai";
-import { defineTool, type AgentToolResult } from "@earendil-works/pi-coding-agent";
+import type { JsonValue } from "@earendil-works/pi-ai";
+import type { AgentToolResult, ExtensionToolContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
+import { type TSchema, Type } from "typebox";
 import {
   type GatherEventType,
   GatherSendParamsSchema,
@@ -15,6 +16,12 @@ export const GatherSendResultSchema = Type.Object({
   details: Type.Optional(Type.Record(Type.String(), Type.Unknown())),
   error: Type.Optional(Type.String()),
 });
+
+function defineTool<TParams extends TSchema, TDetails = unknown, TState = any>(
+  tool: ToolDefinition<TParams, TDetails, TState>
+): ToolDefinition<TParams, TDetails, TState> {
+  return tool;
+}
 
 function formatResult(
   text: string,
@@ -56,7 +63,13 @@ export function createGatherSendTool(coordinator: GatherCoordinator) {
       destructiveHint: true,
       idempotentHint: false,
     },
-    async execute(_toolCallId, params, signal): Promise<AgentToolResult<Record<string, unknown>>> {
+    async execute(
+      _toolCallId: string,
+      params,
+      signal?: AbortSignal,
+      _onUpdate?: unknown,
+      _ctx?: ExtensionToolContext
+    ): Promise<AgentToolResult<Record<string, unknown>>> {
       const config = coordinator.getConfigResult().config;
       if (config.enabled === false) {
         return formatResult(

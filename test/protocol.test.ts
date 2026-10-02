@@ -59,7 +59,7 @@ describe("Gather Protocol & Client", () => {
     expect(capturedBody).toBeDefined();
 
     // Verify User-Agent
-    expect(capturedHeaders?.get("User-Agent")).toBe("pi-gather-smart-objects/0.1.1");
+    expect(capturedHeaders?.get("User-Agent")).toBe("pi-gather-smart-objects/0.1.2");
 
     // Verify Standard Webhooks headers
     const webhookId = capturedHeaders?.get("webhook-id");

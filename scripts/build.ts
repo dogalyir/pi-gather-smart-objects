@@ -8,7 +8,7 @@ const result = await Bun.build({
   target: "node",
   format: "esm",
   minify: true,
-  external: ["@earendil-works/*", "typebox", "node:*"],
+  external: ["node:*"],
 });
 
 if (!result.success) {
