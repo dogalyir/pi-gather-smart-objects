@@ -28,7 +28,7 @@ export interface GatherClient {
   rawClient: WebhookObjectClient;
 }
 
-const DEFAULT_USER_AGENT = "pi-gather-smart-objects/0.1.0";
+const DEFAULT_USER_AGENT = "pi-gather-smart-objects/0.1.1";
 const MAX_PAYLOAD_BYTES = 4096;
 
 export function sanitizeErrorMessage(message: string, secret: string): string {
