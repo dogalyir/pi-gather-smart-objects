@@ -8,6 +8,14 @@
     "smart-objects"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dogalyir/pi-gather-smart-objects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dogalyir/pi-gather-smart-objects/issues"
+  },
+  "homepage": "https://github.com/dogalyir/pi-gather-smart-objects#readme",
   "type": "module",
   "main": "./dist/gather.js",
   "exports": {
